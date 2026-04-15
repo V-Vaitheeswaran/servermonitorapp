@@ -1,70 +1,149 @@
-# Getting Started with Create React App
+# 🚀 Server Monitoring Dashboard
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A full-stack server monitoring dashboard that tracks **CPU, Memory, and Disk usage** in real time, with historical data visualization and a clean dark UI.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## 📌 Features
 
-### `npm start`
+- 📊 **Real-time Metrics**
+  - CPU Usage
+  - Memory Usage
+  - Disk Usage
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- 🍩 **Donut Charts**
+  - Visual representation of system health
+  - Dynamic updates every few seconds
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- 📈 **History Graph**
+  - CPU usage trends over time
 
-### `npm test`
+- 💽 **Disk Partition Table**
+  - Filesystem details (size, used, available, mount point)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- 📜 **Historical Data Table**
+  - Stores metrics every 5 minutes
+  - Displays past system performance
 
-### `npm run build`
+- 🔄 **Auto Refresh**
+  - Live data updates every 5 seconds
+  - History updates periodically
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- 🌙 **Dark Mode UI**
+  - Clean and modern dashboard design
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+---
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## 🛠️ Tech Stack
 
-### `npm run eject`
+### Frontend
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- React (Hooks, useEffect)
+- Recharts (Charts & Donut Graphs)
+- CSS (Dark theme UI)
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Backend
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- Node.js
+- Express.js
+- child_process (Linux system commands)
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+---
 
-## Learn More
+## ⚙️ How It Works
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+1. Backend executes Linux system commands to fetch metrics
+2. Data is exposed via REST APIs
+3. React frontend fetches data periodically
+4. Charts and tables update dynamically
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+---
 
-### Code Splitting
+## 📁 Project Structure
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+```
+servermonitorapp/
+├── backend/
+│   └── server.js
+├── src/
+├── public/
+├── package.json
+└── README.md
+```
 
-### Analyzing the Bundle Size
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## ▶️ Getting Started
 
-### Making a Progressive Web App
+### 1. Clone the repository
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+```
+git clone https://github.com/V-Vaitheeswaran/servermonitorapp.git
+cd servermonitorapp
+```
 
-### Advanced Configuration
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+### 2. Start Backend
 
-### Deployment
+```
+cd backend
+npm install
+node server.js
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+Backend runs on:
 
-### `npm run build` fails to minify
+```
+http://localhost:3001
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+---
+
+### 3. Start Frontend
+
+```
+npm install
+npm start
+```
+
+Frontend runs on:
+
+```
+http://localhost:3000
+```
+
+---
+
+## 📡 API Endpoints
+
+| Endpoint   | Description                         |
+| ---------- | ----------------------------------- |
+| `/metrics` | Get current CPU, memory, disk usage |
+| `/history` | Get stored historical data          |
+
+---
+
+## 🧠 Key Concepts Used
+
+- CORS (Cross-Origin Resource Sharing)
+- REST API integration
+- Polling (setInterval)
+- System monitoring using OS commands
+- Data visualization
+
+---
+
+## 🚀 Future Improvements
+
+- 🔔 Alerts (CPU > 80%)
+- 🌐 Multi-server monitoring
+- 💾 Database integration (MongoDB)
+- 🔐 Authentication system
+- 📡 Real-time updates using WebSockets
+
+---
+
+## 👨‍💻 Author
+
+**Vaitheeswaran V**
