@@ -1,17 +1,20 @@
-
 import { PieChart, Pie, Cell } from "recharts";
 
 const DonutChart = ({ value, label }) => {
   const data = [
     { name: "Used", value: value },
-    { name: "Free", value: 100 - value }
+    { name: "Free", value: 100 - value },
   ];
 
   const COLORS = ["#00C49F", "#1e1e1e"];
 
   return (
     <div style={container}>
-      <PieChart width={180} height={180}>
+      <PieChart
+        width={180}
+        height={180}
+        style={{ background: "#1e293b", borderRadius: "50%" }}
+      >
         <Pie
           data={data}
           innerRadius={60}
@@ -38,6 +41,12 @@ const container = {
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
+  background: "#1e293b",
+  borderRadius: "12px",
+  padding: "20px",
+  width: "220px",
+  height: "220px",
+  flexShrink: 0,
 };
 
 const centerText = {
