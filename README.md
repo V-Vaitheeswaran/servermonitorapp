@@ -1,149 +1,179 @@
-# 🚀 Server Monitoring Dashboard
+# Monitor Server App
 
-A full-stack server monitoring dashboard that tracks **CPU, Memory, and Disk usage** in real time, with historical data visualization and a clean dark UI.
+A full-stack monitoring app built with React and Express. It includes:
 
----
+- a landing page with monitoring overview
+- a server monitor for CPU, memory, and disk usage
+- a website monitor for uptime checks
+- website detail pages with status history and response-time trends
 
-## 📌 Features
+## Features
 
-- 📊 **Real-time Metrics**
-  - CPU Usage
-  - Memory Usage
-  - Disk Usage
+### Home Page
 
-- 🍩 **Donut Charts**
-  - Visual representation of system health
-  - Dynamic updates every few seconds
+- Monitoring overview screen
+- Quick navigation to server and website monitors
+- Live server summary cards
+- Website tracking summary cards
 
-- 📈 **History Graph**
-  - CPU usage trends over time
+### Server Monitor
 
-- 💽 **Disk Partition Table**
-  - Filesystem details (size, used, available, mount point)
+- Live CPU, memory, and disk usage
+- Donut charts for current usage
+- CPU and memory history charts
+- Disk partition table
+- History table
+- Last 10 history points shown in charts and table
 
-- 📜 **Historical Data Table**
-  - Stores metrics every 5 minutes
-  - Displays past system performance
+### Website Monitor
 
-- 🔄 **Auto Refresh**
-  - Live data updates every 5 seconds
-  - History updates periodically
+- Add and remove URLs
+- Automatic URL checking through the backend
+- Tracks current status as `UP`, `DOWN`, or `Checking...`
+- Stores recent check history in `localStorage`
+- Shows latest response time in the monitor table
 
-- 🌙 **Dark Mode UI**
-  - Clean and modern dashboard design
+### Website Detail
 
----
+- Per-site detail page
+- Status summary and latest response time
+- Status trend graph
+- Response time trend graph
+- History table with response time
+- Last 10 data points shown in graphs and history
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 ### Frontend
 
-- React (Hooks, useEffect)
-- Recharts (Charts & Donut Graphs)
-- CSS (Dark theme UI)
+- React
+- React Router
+- Recharts
+- CSS
 
 ### Backend
 
 - Node.js
-- Express.js
-- child_process (Linux system commands)
+- Express
+- CORS
+- `os`
+- `child_process`
+- `http` and `https`
 
----
+## Project Structure
 
-## ⚙️ How It Works
-
-1. Backend executes Linux system commands to fetch metrics
-2. Data is exposed via REST APIs
-3. React frontend fetches data periodically
-4. Charts and tables update dynamically
-
----
-
-## 📁 Project Structure
-
-```
-servermonitorapp/
+```text
+monitorserverapp/
 ├── backend/
+│   ├── package.json
 │   └── server.js
-├── src/
 ├── public/
+├── src/
+│   ├── components/
+│   │   ├── DonutChart.js
+│   │   └── Navbar.js
+│   ├── styles/
+│   │   ├── base.css
+│   │   ├── Dashboard.css
+│   │   ├── Home.css
+│   │   ├── Navbar.css
+│   │   ├── WebDetail.css
+│   │   └── WebMonitor.css
+│   ├── App.js
+│   ├── Dashboard.js
+│   ├── Home.js
+│   ├── WebDetail.js
+│   └── WebMonitor.js
 ├── package.json
 └── README.md
 ```
 
----
+## How It Works
 
-## ▶️ Getting Started
+### Server Monitor
 
-### 1. Clone the repository
+1. The backend collects CPU, memory, and disk information.
+2. The frontend polls `/metrics` for live values.
+3. The frontend polls `/history` for stored server history.
+4. Charts and tables update automatically.
 
+### Website Monitor
+
+1. You add URLs in the Web Monitor page.
+2. URLs are saved in browser `localStorage`.
+3. The frontend calls the backend `/check` endpoint.
+4. The backend checks the website and returns:
+   - status
+   - status code
+   - response time
+   - checked time
+5. The frontend stores recent history and shows it in the detail page.
+
+## API Endpoints
+
+| Endpoint | Description |
+| --- | --- |
+| `/metrics` | Returns current CPU, memory, disk, and time |
+| `/history` | Returns stored server history |
+| `/check?url=...` | Checks a website and returns status and response time |
+
+## Getting Started
+
+### 1. Install frontend dependencies
+
+```bash
+npm install
 ```
-git clone https://github.com/V-Vaitheeswaran/servermonitorapp.git
-cd servermonitorapp
-```
 
----
+### 2. Install backend dependencies
 
-### 2. Start Backend
-
-```
+```bash
 cd backend
 npm install
+```
+
+### 3. Start the backend
+
+```bash
 node server.js
 ```
 
-Backend runs on:
+Backend runs at:
 
-```
+```text
 http://localhost:3001
 ```
 
----
+### 4. Start the frontend
 
-### 3. Start Frontend
+Open a new terminal in the project root and run:
 
-```
-npm install
+```bash
 npm start
 ```
 
-Frontend runs on:
+Frontend runs at:
 
-```
+```text
 http://localhost:3000
 ```
 
----
+## Notes
 
-## 📡 API Endpoints
+- Website monitor data is stored in the browser, not in a database.
+- Server history is kept in backend memory.
+- Restarting the backend clears server history.
+- Existing saved website entries may show `-` for response time until they are checked again.
 
-| Endpoint   | Description                         |
-| ---------- | ----------------------------------- |
-| `/metrics` | Get current CPU, memory, disk usage |
-| `/history` | Get stored historical data          |
+## Possible Improvements
 
----
+- Alerts for downtime or high usage
+- Persistent storage with a database
+- Authentication
+- Multi-server support
+- Configurable polling intervals
+- Real-time updates with WebSockets
 
-## 🧠 Key Concepts Used
-
-- CORS (Cross-Origin Resource Sharing)
-- REST API integration
-- Polling (setInterval)
-- System monitoring using OS commands
-- Data visualization
-
----
-
-## 🚀 Future Improvements
-
-- 🔔 Alerts (CPU > 80%)
-- 🌐 Multi-server monitoring
-- 💾 Database integration (MongoDB)
-- 🔐 Authentication system
-- 📡 Real-time updates using WebSockets
-
----
-
-## 👨‍💻 Author
+## Author
 
 **Vaitheeswaran V**
